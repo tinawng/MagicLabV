@@ -8,5 +8,95 @@ html {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 
-  font-family: "Roboto";
+  font-family: "Suisse Intl";
+  @apply text-brand-800;
+  @apply bg-brand-200;
+}
+
+:focus-visible {
+  outline: transparent !important;
+}
+:focus {
+  outline: transparent !important;
+}
+
+h1 {
+  @apply text-5xl font-semibold;
+}
+h2 {
+  @apply text-2xl font-bold;
+}
+h3 {
+  @apply text-lg font-medium;
+}
+h4 {
+  @apply text-sm font-bold;
+}
+h5 {
+  @apply text-base text-brand-400;
+}
+
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-UltraLight.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Thin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-SemiBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Suisse Intl';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/suisse-intl/SuisseIntl-Black.woff2') format('woff2');
 }

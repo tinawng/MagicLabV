@@ -1,13 +1,18 @@
 <template>
   <div class="layout__container">
+    <navigation-drawer />
+
     <Nuxt />
   </div>
 </template>
 
 <style lang="postcss">
-#__layout {
+.layout__container {
   @apply min-h-screen;
-  max-width: 64rem;
-  @apply mx-auto;
+  max-width: 100vw;
+  @apply w-screen;
+  min-width: 100vw;
+
+  @apply flex;
 }
 </style>
