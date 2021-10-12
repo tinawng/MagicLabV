@@ -4,7 +4,7 @@
       <div v-for="header in headers" :key="header.name">
         <h5>{{ header.name }}</h5>
         <div v-if="header.sorter" class="flex flex-col">
-          <utils-button
+          <ui-button
             :size="0.75"
             icon="chevron-up"
             :icon_size="14"
@@ -14,7 +14,7 @@
               }
             "
           />
-          <utils-button
+          <ui-button
             :size="0.75"
             icon="chevron-down"
             :icon_size="14"
@@ -27,50 +27,40 @@
         </div>
       </div>
     </div>
+
     <div
       class="data_table__row"
-      :class="{'opacity-50': recording.is_reviewed}"
-      v-for="(recording, index) in recording_list"
+      v-for="(preset, index) in preset_list.slice(0, 100)"
       :key="index"
       :ref="`table-row-${index}`"
-      @click="
-        selectRow(index);
-        openModal(recording);
-      "
+      @click="selectRow(index)"
     >
-      <h4>date</h4>
-      <div class="flex items-center">
-        <div class="data_table__row__icon">{{ recording.title_emoji }}</div>
-        <div class="flex items-center">
-          <h3 class="mr-3 font-medium capitalize">{{ recording.title }}</h3>
-          <h4 class="mr-3">•</h4>
-          <h4>{{ recording.product }}</h4>
-        </div>
-        <utils-icon v-show="recording.is_hidden" class="ml-auto mr-7" variant="hidden" :size="16" />
-      </div>
-      <h3 v-if="recording.author" class="capitalize">
-        {{ recording.author.firstname }} {{ recording.author.lastname }}
-      </h3>
-      <utils-icon class="mx-auto" :variant="reviewMethodIcon(recording.review_method)" :size="20" />
+      <h3>⭐</h3>
+      <h3>⭐</h3>
+      <h3>{{preset.preset_name}}</h3>
+      <h3>{{preset.type}}</h3>
+      <h3>{{preset.designer}}</h3>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  async fetch() {
+    this.preset_list = await this.$http.$get("json/presets.json");
+  },
+
   data: () => ({
     headers: [
-      { name: "Fav.", sorter: "date" },
-      { name: "Feat.", sorter: "date" },
-      { name: "Name", sorter: "date" },
-      { name: "Type", sorter: "product" },
-      { name: "Designer", sorter: "author" }
+      { name: "Fav.", sorter: "favorite" },
+      { name: "Feat.", sorter: "f_order" },
+      { name: "Name", sorter: "name" },
+      { name: "Type", sorter: "type" },
+      { name: "Designer", sorter: "designer" },
     ],
-    recording_list: [],
+    preset_list: [],
   }),
-  async created() {
-    //  TODO: get list
-  },
+
   methods: {
     getRowsDOMElementsList() {
       var dom_elements_list = [];
@@ -80,23 +70,29 @@ export default {
       return dom_elements_list;
     },
     orderBy(header, direction) {
-      this.getRowsDOMElementsList().forEach((el) => {
-        el.classList.add("data_table__row_hide");
-      });
-
-      // 💫 Wait for animation to end
-      setTimeout(() => {
-        this.recording_list = this.recording_list.sort((a, b) => {
-          var res = a[header] > b[header];
+      this.preset_list = this.preset_list.sort((a, b) => {
+        var res = a[header] > b[header];
           res = res == 0 ? res - 1 : res;
           return direction == "asc" ? res : -res;
         });
-        setTimeout(() => {
-          this.getRowsDOMElementsList().forEach((el) => {
-            el.classList.remove("data_table__row_hide");
-          });
-        }, 50);
-      }, 300);
+
+      // this.getRowsDOMElementsList().forEach((el) => {
+      //   el.classList.add("data_table__row_hide");
+      // });
+
+      // 💫 Wait for animation to end
+      // setTimeout(() => {
+      //   this.preset_list = this.preset_list.sort((a, b) => {
+      //     var res = a[header] > b[header];
+      //     res = res == 0 ? res - 1 : res;
+      //     return direction == "asc" ? res : -res;
+      //   });
+      //   setTimeout(() => {
+      //     // this.getRowsDOMElementsList().forEach((el) => {
+      //     //   el.classList.remove("data_table__row_hide");
+      //     // });
+      //   }, 50);
+      // }, 300);
     },
     selectRow(index) {
       this.getRowsDOMElementsList().forEach((el) => {
@@ -122,10 +118,15 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.data_table__container {
+  @apply max-h-screen;
+  @apply overflow-scroll;
+}
+
 .data_table__header {
   @apply mx-10 pb-6;
   @apply grid;
-  grid-template-columns: auto auto 1fr 1fr 1fr;
+  grid-template-columns: 6rem 6rem 1fr 1fr 1fr;
   @apply border-b border-brand-300;
 }
 .data_table__header > * {
@@ -138,10 +139,10 @@ export default {
 }
 
 .data_table__row {
-  @apply h-20;
+  @apply h-14;
   @apply px-10;
   @apply grid items-center;
-  grid-template-columns: 1fr 60% 1fr 100px;
+  grid-template-columns: 6rem 6rem 1fr 1fr 1fr;
   @apply cursor-pointer;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.15s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.15s cubic-bezier(0.4, 0, 0.2, 1);

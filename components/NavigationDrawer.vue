@@ -37,7 +37,7 @@ export default {};
 .nav_drawer__container {
   width: 85px;
   min-width: 85px;
-  @apply py-4;
+  @apply pt-28 py-4;
   @apply flex flex-col;
   @apply overflow-x-hidden;
   transition-property: width, min-width;

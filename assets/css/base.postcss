@@ -19,6 +19,9 @@ html {
 :focus {
   outline: transparent !important;
 }
+::-webkit-scrollbar {
+  @apply w-0 h-0;
+}
 
 h1 {
   @apply text-5xl font-semibold;
@@ -27,13 +30,13 @@ h2 {
   @apply text-2xl font-bold;
 }
 h3 {
-  @apply text-lg font-medium;
+  @apply text-sm font-normal;
 }
 h4 {
-  @apply text-sm font-bold;
+  @apply text-sm font-semibold;
 }
 h5 {
-  @apply text-base text-brand-400;
+  @apply text-sm text-brand-400;
 }
 
 @font-face {

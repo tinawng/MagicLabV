@@ -35,6 +35,9 @@
     <g v-else-if="variant == 'chevron-down'">
       <polyline points="6 9 12 15 18 9"></polyline>
     </g>
+    <g v-else-if="variant == 'chevron-right'">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </g>
   </svg>
 </template>
 
