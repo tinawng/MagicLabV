@@ -1,9 +1,9 @@
 <template>
   <div class="nav_drawer__container">
-    <!-- <div class="nav_drawer__brand">
-      <ui-icon class="ml-0.5 mr-1" variant="disc" :size="44" />
-      <h3 class="text-base font-extrabold">Contrast.</h3>
-    </div> -->
+    <div class="nav_drawer__brand flex items-center">
+      <span class="nav_drawer__brand__logo">AL</span>
+      <h3 class="ml-2 font-semibold">Analog Lab</h3>
+    </div>
 
     <div class="nav_drawer__menu">
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
@@ -13,7 +13,7 @@
       <h3 class="nav_drawer__item">Stage</h3>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="list" />
-        <h3>Playlist</h3>
+        <h3>Playlists</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="cast" />
@@ -32,10 +32,10 @@
         <ui-icon class="nav_drawer__item__icon" variant="shopping-bag" />
         <h3>Store</h3>
       </NuxtLink>
-      <hr class="my-1 ml-6 w-2/3">
+      <hr class="my-1 ml-6 w-2/3" />
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="heart" />
-        <h3>Favorite</h3>
+        <h3>Favorites</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="folder" />
@@ -64,20 +64,23 @@ export default {};
 .nav_drawer__container {
   width: 14rem;
   min-width: 14rem;
-  @apply pt-14 py-4;
+  @apply py-4;
   @apply border-r border-brand-400;
 }
 
 .nav_drawer__brand {
-  @apply mt-3 mb-5 mx-4;
-  @apply flex items-center;
-  @apply cursor-pointer;
+  @apply mt-4 mb-8 mx-4 pl-3.5;
+}
+.nav_drawer__brand__logo {
+  @apply py-2 px-2;
+  @apply bg-brand-800 rounded-xl tracking-widest;
+  @apply text-sm font-medium text-brand-200;
 }
 .nav_drawer__item {
   @apply mx-4 py-2.5 pl-3.5 pr-4;
   @apply flex items-center;
-  @apply transition-colors;
-  @apply cursor-pointer;
+  @apply transition-colors cursor-pointer;
+  transition-duration: 100ms;
 }
 h3.nav_drawer__item {
   @apply mt-3;
@@ -86,7 +89,6 @@ a.nav_drawer__item:hover {
   @apply text-brand-800;
   @apply rounded-lg bg-brand-200;
   @apply transform -translate-y-0.5 transition-transform;
-  transition-duration: 200ms;
 }
 .nav_drawer__item__icon {
   @apply h-4 w-4;

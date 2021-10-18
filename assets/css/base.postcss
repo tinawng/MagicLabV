@@ -35,6 +35,16 @@ h4 {
   @apply text-xs text-brand-600;
 }
 
+/* 💫 Animations */
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: .5s;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(2.5rem);
+  opacity: 0;
+}
 
 @font-face {
   font-family: 'Suisse Intl';
