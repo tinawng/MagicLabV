@@ -2,19 +2,19 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
-      
+
       colors: {
         brand: {
-          '900': '#000',
+          '900': '#000',    // Button
 
-          '800': '#333333',
-          '400': '#9A9A9A',
-          '300': '#DADADA',
-          '200': '#F2F2F3',
+          '800': '#131314', // Text
+          '600': '#46474E', // Ligth text
+          '400': '#E8E8E9', // Separator
+          '200': '#F3F4F4', // Accent Background
 
-          '100': '#fff',
-          
-          'accent' : '#EF7878',
+          '100': '#fff',    // Background
+
+          'accent': '#EF7878',
         }
       },
       fontSize: {

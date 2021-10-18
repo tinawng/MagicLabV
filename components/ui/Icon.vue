@@ -29,6 +29,14 @@
       <line x1="3" y1="6" x2="21" y2="6"></line>
       <path d="M16 10a4 4 0 0 1-8 0"></path>
     </g>
+    <g v-else-if="variant == 'list'">
+      <line x1="8" y1="6" x2="21" y2="6"></line>
+      <line x1="8" y1="12" x2="21" y2="12"></line>
+      <line x1="8" y1="18" x2="21" y2="18"></line>
+      <line x1="3" y1="6" x2="3.01" y2="6"></line>
+      <line x1="3" y1="12" x2="3.01" y2="12"></line>
+      <line x1="3" y1="18" x2="3.01" y2="18"></line>
+    </g>
     <g v-else-if="variant == 'chevron-up'">
       <polyline points="18 15 12 9 6 15"></polyline>
     </g>
@@ -37,6 +45,32 @@
     </g>
     <g v-else-if="variant == 'chevron-right'">
       <polyline points="9 18 15 12 9 6"></polyline>
+    </g>
+    <g v-else-if="variant == 'cast'">
+      <path
+        d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"
+      ></path>
+      <line x1="2" y1="20" x2="2.01" y2="20"></line>
+    </g>
+    <g v-else-if="variant == 'heart'">
+      <path
+        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+      ></path>
+    </g>
+    <g v-else-if="variant == 'folder'">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+    </g>
+    <g v-else-if="variant == 'headphones'">
+      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+      <path
+        d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+      ></path>
+    </g>
+    <g v-else-if="variant == 'history'">
+      <line x1="17" y1="10" x2="3" y2="10"></line>
+      <line x1="21" y1="6" x2="3" y2="6"></line>
+      <line x1="21" y1="14" x2="3" y2="14"></line>
+      <line x1="17" y1="18" x2="3" y2="18"></line>
     </g>
   </svg>
 </template>

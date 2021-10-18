@@ -9,8 +9,8 @@ html {
   touch-action: manipulation;
 
   font-family: "Suisse Intl";
-  @apply text-brand-800;
-  @apply bg-brand-200;
+  @apply bg-brand-100;
+  @apply text-brand-800 tracking-wide;
 }
 
 :focus-visible {
@@ -22,22 +22,19 @@ html {
 ::-webkit-scrollbar {
   @apply w-0 h-0;
 }
-
 h1 {
-  @apply text-5xl font-semibold;
+  @apply text-3xl;
 }
 h2 {
-  @apply text-2xl font-bold;
+  @apply text-sm;
 }
 h3 {
-  @apply text-sm font-normal;
+  @apply text-sm text-brand-600;
 }
 h4 {
-  @apply text-sm font-semibold;
+  @apply text-xs text-brand-600;
 }
-h5 {
-  @apply text-sm text-brand-400;
-}
+
 
 @font-face {
   font-family: 'Suisse Intl';

@@ -98,7 +98,7 @@ export default {
   @apply bg-brand-800;
 }
 .button__dark:active {
-  @apply bg-brand-300;
+  /* @apply bg-brand-300; */
 }
 
 .button__rounded {
