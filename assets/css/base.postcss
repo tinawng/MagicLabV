@@ -10,7 +10,7 @@ html {
 
   font-family: "Suisse Intl";
   @apply bg-brand-100;
-  @apply text-brand-800 tracking-wide;
+  @apply tracking-wide;
 }
 
 :focus-visible {
@@ -23,27 +23,67 @@ html {
   @apply w-0 h-0;
 }
 h1 {
-  @apply text-3xl;
+  @apply text-sm text-brand-800;
+  @apply text-3xl ;
 }
 h2 {
-  @apply text-sm;
+  @apply text-sm text-brand-800;
 }
 h3 {
   @apply text-sm text-brand-600;
 }
 h4 {
-  @apply text-xs text-brand-600;
+  @apply text-sm text-brand-500;
+}
+h5 {
+  @apply text-xs text-brand-500;
 }
 
 /* 💫 Animations */
 .slide-fade-enter-active, .slide-fade-leave-active {
   transition-property: transform, opacity;
   transition-timing-function: ease;
-  transition-duration: .5s;
+  transition-duration: .3s;
 }
 .slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(2.5rem);
+  transform: translateY(2rem);
   opacity: 0;
+}
+.slide-fade-short-enter-active, .slide-fade-short-leave-active {
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: .100s;
+}
+.slide-fade-short-enter {
+  transform: translateY(-.2rem);
+  opacity: 0;
+}
+.slide-fade-short-leave-to {
+  transform: translateY(.2rem);
+  opacity: 0;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translateZ(0);
+  }
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -9px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -5px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
 }
 
 @font-face {

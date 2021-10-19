@@ -2,31 +2,42 @@
   <div class="page__container">
     <div class="page__top_nav"></div>
     <section class="hero">
-      <img class="hero__thumbnail" src="/images/cover.jpg" alt="cover" />
+      <img class="hero__thumbnail" src="/images/lofi.jpg" alt="cover" />
       <div>
         <h1>{{preset.title}}</h1>
         <h3 class="mt-2">{{preset.baseline}}</h3>
-        <div class="mt-6 flex">
-          <ui-button-icon icon="shopping-bag" />
+        <div class="mt-6 flex gap-x-6">
+          <ui-button-icon icon="headphones" color="#518ECC">
+            <template #text> Listen </template>
+            <template #text_hover> Listen to demos </template>
+          </ui-button-icon>
+          <ui-button-icon icon="synth" color="#518ECC" @click.native="highlightPlayablePresets">
+            <template #text> Try </template>
+            <template #text_hover> Try presets </template>
+          </ui-button-icon>
+          <ui-button-icon icon="shopping-bag" color="#518ECC">
+            <template #text> ${{preset.price}} </template>
+            <template #text_hover> Buy </template>
+          </ui-button-icon>
         </div>
       </div>
     </section>
 
     <section class="mt-12 flex gap-x-12">
-      <div class="info_panel">
-        <div class="info_panel__nav">
+      <div class="details_panel">
+        <div class="details_panel__nav">
           <h2
-            class="info_panel__nav__item"
-            :class="{'selected': info_panel_state == 'description'}"
-            @click="info_panel_state = 'description'"
+            class="details_panel__nav__item"
+            :class="{'selected': details_panel_state == 'description'}"
+            @click="details_panel_state = 'description'"
           >
             Bank infos
           </h2>
           <h2
             v-if="preset.presets"
-            :class="{'selected': info_panel_state == 'presets'}"
-            class="info_panel__nav__item"
-            @click="info_panel_state = 'presets'"
+            :class="{'selected': details_panel_state == 'presets'}"
+            class="details_panel__nav__item"
+            @click="details_panel_state = 'presets'"
           >
             Presets · {{preset.presets.length}}
           </h2>
@@ -34,31 +45,50 @@
         <hr class="mb-4" />
 
         <transition name="slide-fade" mode="out-in">
-          <div v-if="info_panel_state == 'description'" key="description">
+          <!-- ~~~~~~~ Description Panel ~~~~~~~ -->
+          <div v-if="details_panel_state == 'description'" key="description">
             <h3 class="mt-12 mb-4">Description</h3>
             <h3 class="leading-relaxed">
               {{preset.description}}
             </h3>
-
             <h3 class="mt-12 mb-4">Details</h3>
             <h3>Designer: {{preset.designer}}</h3>
             <h3>Released: {{preset.date}}</h3>
           </div>
-          <div v-else-if="info_panel_state == 'presets'" key="presets">
-            <h3 class="mt-12 mb-4">Presets</h3>
+          <!-- ~~~~~~~ Presets Panel ~~~~~~~ -->
+          <div v-else-if="details_panel_state == 'presets'" key="presets" ref="preset_list">
+            <h3 class="mt-12 mb-4"></h3>
 
-            <h3 v-for="preset in preset.presets" :key="preset">{{preset}}</h3>
+            <div v-for="(preset, index) in preset.presets" :key="preset.name" class="mb-8" :ref="ref => { 'presets' }">
+              <div class="mb-2 ml-1 flex items-center">
+                <h3 class="font-medium">{{preset.name}}</h3>
+                <h5 class="ml-2">
+                  for {{preset.instrument}} <span class="mx-1">·</span> <span class="capitalize">{{preset.type}}</span>
+                </h5>
+                <h3
+                  v-if="preset.playable"
+                  class="ml-auto flex items-center"
+                  :class="{'bounce': preset.playable}"
+                  :style="`--anim-delay: ${index*0.4}s`"
+                >
+                  <ui-icon class="h-4 w-4 mr-1" variant="synth" />Try it
+                </h3>
+              </div>
+              <div class="p-3 border rounded-lg">
+                <h4 class="leading-relaxed">{{preset.comment}}</h4>
+              </div>
+            </div>
           </div>
         </transition>
       </div>
       <div style="flex: 1 1 35%">
-        <h2 class="ml-1 mb-3">Instruments</h2>
+        <h3 class="ml-1 mb-3">Instruments</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <h3 v-for="instrument in preset.instruments" :key="instrument">{{instrument}}</h3>
+          <h4 v-for="instrument in preset.instruments" :key="instrument">{{instrument}}</h4>
         </div>
-        <h2 class="ml-1 mt-12 mb-3">Tags</h2>
+        <h3 class="ml-1 mt-12 mb-3">Tags</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <h3 v-for="tag in preset.tags" :key="tag">{{tag}}</h3>
+          <h4 v-for="tag in preset.tags" :key="tag">{{tag}}</h4>
         </div>
       </div>
     </section>
@@ -67,13 +97,26 @@
 
 <script>
 export default {
-  data: () => ({
-    preset: {},
-    info_panel_state: "description", // ["description", "presets"]
-  }),
-
   async fetch() {
     this.preset = await this.$http.$get("json/preset.json");
+  },
+
+  data: () => ({
+    preset: {},
+    details_panel_state: "description", // ["description", "presets"]
+  }),
+
+  methods: {
+    highlightPlayablePresets() {
+      if (this.details_panel_state === "presets") {
+        let els = this.$refs.preset_list.querySelectorAll(".bounce");
+        els.forEach((el) => el.classList.remove("bounce"));
+        els[0].scrollIntoView({behavior: "smooth"});
+        setTimeout(() => {
+          els.forEach((el) => el.classList.add("bounce"));
+        }, 0);
+      } else {this.details_panel_state = "presets";}
+    },
   },
 };
 </script>
@@ -101,22 +144,26 @@ export default {
   @apply shadow-xl;
 }
 
-.info_panel {
+.details_panel {
   flex: 1 1 65%;
 }
-.info_panel__nav {
+.details_panel__nav {
   @apply flex gap-x-8;
 }
-.info_panel__nav__item {
+.details_panel__nav__item {
   @apply pb-4;
   @apply border-b border-brand-800 border-opacity-0;
   @apply opacity-50;
   @apply transition-all cursor-pointer;
 }
-.info_panel__nav__item:hover {
+.details_panel__nav__item:hover {
   @apply opacity-80;
 }
-.info_panel__nav__item.selected {
+.details_panel__nav__item.selected {
   @apply opacity-100 border-opacity-100;
+}
+
+.bounce {
+  animation: bounce 0.8s ease-in-out calc(0.5s + var(--anim-delay));
 }
 </style>

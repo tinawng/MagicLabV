@@ -2,6 +2,11 @@
   <div class="layout__container">
     <navigation-drawer />
 
+    <div class="fixed top-0 left-56 p-6 flex">
+      <ui-button-icon rounded icon="arrow-left" :icon_stroke="2" />
+      <preset-player />
+    </div>
+
     <Nuxt />
   </div>
 </template>
