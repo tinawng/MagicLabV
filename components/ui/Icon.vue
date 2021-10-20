@@ -1,5 +1,6 @@
 <template>
   <svg
+    :class="{'ml-0.5': variant==='play'}"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -46,6 +47,9 @@
     <g v-else-if="variant == 'chevron-right'">
       <polyline points="9 18 15 12 9 6"></polyline>
     </g>
+    <g v-else-if="variant == 'chevron-left'">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </g>
     <g v-else-if="variant == 'cast'">
       <path
         d="M2 16.1A5 5 0 0 1 5.9 20M2 12.05A9 9 0 0 1 9.95 20M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"
@@ -80,7 +84,14 @@
       />
     </g>
     <g v-else-if="variant == 'arrow-left'">
-      <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </g>
+    <g v-else-if="variant == 'play'">
+      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+    </g>
+    <g v-else-if="variant == 'pause'">
+      <rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>
     </g>
   </svg>
 </template>

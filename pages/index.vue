@@ -1,13 +1,13 @@
 <template>
   <div class="page__container">
-    <div class="page__top_nav"></div>
+    <!-- <div class="page__top_nav"></div> -->
     <section class="hero">
-      <img class="hero__thumbnail" src="/images/lofi.jpg" alt="cover" />
+      <img class="hero__thumbnail" src="/images/lofi.jpg" alt="thumbnail" />
       <div>
         <h1>{{preset.title}}</h1>
-        <h3 class="mt-2">{{preset.baseline}}</h3>
-        <div class="mt-6 flex gap-x-6">
-          <ui-button-icon icon="headphones" color="#518ECC">
+        <h3 class="mt-3">{{preset.baseline}}</h3>
+        <div class="mt-8 flex gap-x-6">
+          <ui-button-icon icon="headphones" color="#518ECC" @click.native="playAudioDemo">
             <template #text> Listen </template>
             <template #text_hover> Listen to demos </template>
           </ui-button-icon>
@@ -47,6 +47,8 @@
         <transition name="slide-fade" mode="out-in">
           <!-- ~~~~~~~ Description Panel ~~~~~~~ -->
           <div v-if="details_panel_state == 'description'" key="description">
+            <h3 class="mt-12 mb-4">Audio demo</h3>
+            <audio-player id="audio-player" :srcs="preset.audio_demos" />
             <h3 class="mt-12 mb-4">Description</h3>
             <h3 class="leading-relaxed">
               {{preset.description}}
@@ -55,6 +57,7 @@
             <h3>Designer: {{preset.designer}}</h3>
             <h3>Released: {{preset.date}}</h3>
           </div>
+
           <!-- ~~~~~~~ Presets Panel ~~~~~~~ -->
           <div v-else-if="details_panel_state == 'presets'" key="presets" ref="preset_list">
             <h3 class="mt-12 mb-4"></h3>
@@ -107,15 +110,42 @@ export default {
   }),
 
   methods: {
+    playAudioDemo() {
+      let wait_for_transition = false;
+      if (this.details_panel_state !== "description") {
+        this.details_panel_state = "description";
+        wait_for_transition = true;
+      }
+
+      // 💫 Wait for transition animation to end
+      setTimeout(
+        () => {
+          this.$nuxt.$emit("audio-player:play");
+          // this.$el.querySelectorAll("#audio-player")[0].scrollIntoView({ behavior: "smooth", block: "center" });
+        },
+        wait_for_transition ? 600 : 0
+      );
+    },
     highlightPlayablePresets() {
       if (this.details_panel_state === "presets") {
+        // Get all playable preset divs
         let els = this.$refs.preset_list.querySelectorAll(".bounce");
+        // Remove previous animation class
         els.forEach((el) => el.classList.remove("bounce"));
-        els[0].scrollIntoView({behavior: "smooth"});
-        setTimeout(() => {
+        // Scroll to the first one
+        els[0].scrollIntoView({ behavior: "smooth" });
+        // Add animation class on next tick
+        this.$nextTick(() => {
           els.forEach((el) => el.classList.add("bounce"));
-        }, 0);
-      } else {this.details_panel_state = "presets";}
+        });
+      } else {
+        this.details_panel_state = "presets";
+        // 💫 Wait for transition animation to end
+        setTimeout(() => {
+          // Scroll to the first one
+          this.$refs.preset_list.querySelectorAll(".bounce")[0].scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 600);
+      }
     },
   },
 };

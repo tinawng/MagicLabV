@@ -23,8 +23,9 @@ html {
   @apply w-0 h-0;
 }
 h1 {
-  @apply text-sm text-brand-800;
-  @apply text-3xl ;
+  font-family: 'Helvetica Now Display';
+  @apply text-4xl text-brand-800;
+  
 }
 h2 {
   @apply text-sm text-brand-800;
@@ -86,6 +87,14 @@ h5 {
   }
 }
 
+@font-face {
+  font-family: 'Helvetica Now Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/helvetica-now-display/HelveticaNowDisplay-Regular.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Suisse Intl';
   font-style: normal;
