@@ -1,6 +1,6 @@
 <template>
   <div v-if="presets.length" class="preset_player__container">
-    <ui-button-icon
+    <utils-button-icon
       class="mr-1"
       rounded
       small
@@ -8,7 +8,7 @@
       :disabled="preset_index == 0"
       :callback="()=>{--preset_index}"
     />
-    <ui-button-icon
+    <utils-button-icon
       class="mr-1"
       rounded
       small

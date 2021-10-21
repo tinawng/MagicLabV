@@ -8,7 +8,7 @@
       @mouseleave="mouse_hover = false"
       @click="callback"
     >
-      <ui-icon class="button__icon" :variant="icon" :stroke="icon_stroke" />
+      <utils-icon class="button__icon" :variant="icon" :stroke="icon_stroke" />
     </div>
     <div v-if="!!this.$slots.text_hover">
       <transition name="slide-fade-short" mode="out-in">

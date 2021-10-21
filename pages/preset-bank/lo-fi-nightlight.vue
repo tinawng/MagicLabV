@@ -6,18 +6,18 @@
         <h1>{{preset.title}}</h1>
         <h3 class="mt-3">{{preset.baseline}}</h3>
         <div class="mt-8 flex gap-x-6">
-          <ui-button-icon icon="headphones" color="#518ECC" @click.native="playAudioDemo">
+          <utils-button-icon icon="headphones" color="#518ECC" @click.native="playAudioDemo">
             <template #text> Listen </template>
             <template #text_hover> Listen to demos </template>
-          </ui-button-icon>
-          <ui-button-icon icon="synth" color="#518ECC" @click.native="highlightPlayablePresets">
+          </utils-button-icon>
+          <utils-button-icon icon="synth" color="#518ECC" @click.native="highlightPlayablePresets">
             <template #text> Try </template>
             <template #text_hover> Try presets </template>
-          </ui-button-icon>
-          <ui-button-icon icon="shopping-bag" color="#518ECC">
+          </utils-button-icon>
+          <utils-button-icon icon="shopping-bag" color="#518ECC">
             <template #text> ${{preset.price}} </template>
             <template #text_hover> Buy </template>
-          </ui-button-icon>
+          </utils-button-icon>
         </div>
       </div>
     </section>
@@ -73,7 +73,7 @@
                   :class="{'bounce': preset.playable}"
                   :style="`--anim-delay: ${index*0.4}s`"
                 >
-                  <ui-icon class="h-4 w-4 mr-1" variant="synth" />Try it
+                  <utils-icon class="h-4 w-4 mr-1" variant="synth" />Try it
                 </h3>
               </div>
               <div class="p-3 border rounded-lg">

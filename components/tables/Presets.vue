@@ -4,7 +4,7 @@
       <div v-for="header in headers" :key="header.name">
         <h5>{{ header.name }}</h5>
         <div v-if="header.sorter" class="flex flex-col">
-          <ui-button
+          <utils-button
             :size="0.75"
             icon="chevron-up"
             :icon_size="14"
@@ -14,7 +14,7 @@
               }
             "
           />
-          <ui-button
+          <utils-button
             :size="0.75"
             icon="chevron-down"
             :icon_size="14"
@@ -72,9 +72,9 @@ export default {
     orderBy(header, direction) {
       this.preset_list = this.preset_list.sort((a, b) => {
         var res = a[header] > b[header];
-          res = res == 0 ? res - 1 : res;
-          return direction == "asc" ? res : -res;
-        });
+        res = res == 0 ? res - 1 : res;
+        return direction == "asc" ? res : -res;
+      });
 
       // this.getRowsDOMElementsList().forEach((el) => {
       //   el.classList.add("data_table__row_hide");

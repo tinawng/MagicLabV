@@ -3,8 +3,8 @@
     <navigation-drawer />
 
     <div class="fixed-bar">
-      <ui-button-icon rounded icon="arrow-left" :icon_stroke="2" @click.native="$router.go(-1)"/>
-      <preset-player/>
+      <utils-button-icon rounded icon="arrow-left" :icon_stroke="2" @click.native="$router.go(-1)" />
+      <preset-player />
     </div>
 
     <Nuxt />
@@ -31,7 +31,7 @@
 }
 
 .page__container {
-  @apply w-full ;
+  @apply w-full;
   @apply pt-28;
   @apply mx-auto;
   @apply bg-brand-100;

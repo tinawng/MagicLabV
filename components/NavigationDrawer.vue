@@ -7,49 +7,49 @@
 
     <div class="nav_drawer__menu">
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="headphones" />
+        <utils-icon class="nav_drawer__item__icon" variant="headphones" />
         <h3>Play</h3>
       </NuxtLink>
       <h3 class="nav_drawer__item">Stage</h3>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="list" />
+        <utils-icon class="nav_drawer__item__icon" variant="list" />
         <h3>Playlists</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="cast" />
+        <utils-icon class="nav_drawer__item__icon" variant="cast" />
         <h3>Live</h3>
       </NuxtLink>
       <h3 class="nav_drawer__item">Library</h3>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="home" />
+        <utils-icon class="nav_drawer__item__icon" variant="home" />
         <h3>Home</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="grid" />
+        <utils-icon class="nav_drawer__item__icon" variant="compass" />
         <h3>Explore</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/store" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="shopping-bag" />
+        <utils-icon class="nav_drawer__item__icon" variant="shopping-bag" />
         <h3>Store</h3>
       </NuxtLink>
       <hr class="my-1 ml-6 w-2/3" />
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="heart" />
+        <utils-icon class="nav_drawer__item__icon" variant="heart" />
         <h3>Favorites</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="folder" />
+        <utils-icon class="nav_drawer__item__icon" variant="folder" />
         <h3>My Presets</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__icon" variant="history" />
+        <utils-icon class="nav_drawer__item__icon" variant="history" />
         <h3>History</h3>
       </NuxtLink>
     </div>
 
     <!-- <div class="nav_drawer__footer">
       <div class="nav_drawer__item">
-        <ui-icon class="nav_drawer__item__ui-icon" variant="log-out" :size="20" :stroke="2.5" />
+        <utils-icon class="nav_drawer__item__utils-icon" variant="log-out" :size="20" :stroke="2.5" />
         <h3>Log Out</h3>
       </div>
     </div> -->

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center">
-    <ui-button-icon
+    <utils-button-icon
       rounded
       :disabled="!audio_player_ready"
       :icon="audio_player_is_playing ? 'pause' : 'play'"
@@ -8,7 +8,7 @@
       :callback="play"
     />
     <h5 class="ml-4">Audio Demo 0{{audio_index+1}}</h5>
-    <ui-button-icon
+    <utils-button-icon
       class="ml-auto mr-1"
       rounded
       small
@@ -16,7 +16,14 @@
       icon="chevron-left"
       @click.native="previous"
     />
-    <ui-button-icon class="" rounded small :disabled="!audio_player_ready" icon="chevron-right" @click.native="next" />
+    <utils-button-icon
+      class=""
+      rounded
+      small
+      :disabled="!audio_player_ready"
+      icon="chevron-right"
+      @click.native="next"
+    />
     <audio ref="audio_player" :src="audio_src" />
   </div>
 </template>
@@ -43,7 +50,6 @@ export default {
   },
 
   mounted() {
-
     this.audio_player.addEventListener("canplay", () => {
       this.audio_player_ready = true;
       this.audio_player_is_playing = false;
@@ -61,7 +67,9 @@ export default {
       });
     });
 
-    this.$nuxt.$on("audio-player:play", () => { this.play(); });
+    this.$nuxt.$on("audio-player:play", () => {
+      this.play();
+    });
   },
 
   beforeDestroy() {

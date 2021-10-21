@@ -6,7 +6,7 @@
     </section>
 
     <section class="mt-12 flex flex-wrap justify-center gap-6" @click="$router.push('/preset-bank/lo-fi-nightlight')">
-      <ui-cards-preset-bank v-for="i in 28" :key="i" />
+      <cards-preset-bank v-for="i in 28" :key="i" />
     </section>
   </div>
 </template>
