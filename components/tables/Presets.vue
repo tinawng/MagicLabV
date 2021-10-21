@@ -127,11 +127,9 @@ export default {
   @apply mx-10 pb-6;
   @apply grid;
   grid-template-columns: 6rem 6rem 1fr 1fr 1fr;
-  /* @apply border-b border-brand-300; */
 }
 .data_table__header > * {
   @apply mr-4 pr-3;
-  /* @apply border-r border-brand-300; */
   @apply flex justify-between;
 }
 .data_table__header > :last-of-type {

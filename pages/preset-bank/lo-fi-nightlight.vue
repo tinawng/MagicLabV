@@ -1,6 +1,5 @@
 <template>
   <div class="page__container">
-    <!-- <div class="page__top_nav"></div> -->
     <section class="hero">
       <img class="hero__thumbnail" src="/images/lofi.jpg" alt="thumbnail" />
       <div>
@@ -87,11 +86,15 @@
       <div style="flex: 1 1 35%">
         <h3 class="ml-1 mb-3">Instruments</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <h4 v-for="instrument in preset.instruments" :key="instrument">{{instrument}}</h4>
+          <NuxtLink tag="a" v-for="instrument in preset.instruments" :key="instrument" to="/">
+            <h4>{{instrument}}</h4>
+          </NuxtLink>
         </div>
         <h3 class="ml-1 mt-12 mb-3">Tags</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <h4 v-for="tag in preset.tags" :key="tag">{{tag}}</h4>
+          <NuxtLink tag="a" v-for="tag in preset.tags" :key="tag" to="/">
+            <h4>{{tag}}</h4>
+          </NuxtLink>
         </div>
       </div>
     </section>
@@ -152,16 +155,8 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.page__top_nav {
-  @apply h-24 w-full;
-  @apply flex justify-start items-center;
-}
-
 .page__container {
-  @apply w-full max-w-5xl;
-  @apply mx-auto;
-  @apply bg-brand-100;
-  @apply overflow-scroll;
+  @apply max-w-5xl;
 }
 .hero {
   @apply w-full;

@@ -52,10 +52,10 @@ export default {
 <style lang="postcss" scoped>
 .button__clickable {
   @apply h-12 w-24;
-  @apply rounded-lg border border-brand-300 bg-brand-100 text-brand-900 shadow;
+  @apply rounded-lg border border-brand-400 bg-brand-100 text-brand-900 shadow;
   @apply flex justify-center items-center;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
-  @apply cursor-pointer;
+  @apply cursor-pointer select-none;
 }
 .button__clickable:hover {
   border-color: var(--border-hover-color);
@@ -66,15 +66,20 @@ export default {
 }
 .button__clickable:active {
   @apply shadow-inner;
+  @apply text-brand-100;
+  background: var(--color-hover-color);
 }
 
 .button__rounded {
   @apply h-11 w-11;
   @apply rounded-full;
 }
-.button__rounded.button__small {
+.button__small.button__rounded {
   @apply h-7 w-7;
   @apply rounded-full;
+}
+.button__small:not(.button__rounded) {
+  @apply h-7 w-11;
 }
 
 .button__icon {

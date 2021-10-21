@@ -25,7 +25,9 @@ html {
 h1 {
   font-family: 'Helvetica Now Display';
   @apply text-4xl text-brand-800;
-  
+}
+h1.small {
+  @apply text-2xl font-medium;
 }
 h2 {
   @apply text-sm text-brand-800;
@@ -38,6 +40,23 @@ h4 {
 }
 h5 {
   @apply text-xs text-brand-500;
+}
+
+a {
+  @apply transition-transform;
+  transition-duration: 150ms;
+}
+a:hover {
+  @apply text-brand-800;
+  @apply rounded-lg bg-brand-200;
+  @apply transform -translate-y-0.5;
+}
+a:active {
+  @apply translate-y-0;
+}
+
+input {
+  @apply bg-transparent;
 }
 
 /* 💫 Animations */
@@ -60,6 +79,20 @@ h5 {
   opacity: 0;
 }
 .slide-fade-short-leave-to {
+  transform: translateY(.2rem);
+  opacity: 0;
+}
+.slide-fade-custom-enter-active, .slide-fade-custom-leave-active {
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: var(--transition-duration);
+  transition-delay: var(--transition-delay);
+}
+.slide-fade-custom-enter {
+  transform: translateY(-.2rem);
+  opacity: 0;
+}
+.slide-fade-custom-leave-to {
   transform: translateY(.2rem);
   opacity: 0;
 }
@@ -94,6 +127,14 @@ h5 {
   font-display: swap;
   src: local(''),
        url('../../static/fonts/helvetica-now-display/HelveticaNowDisplay-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+       url('../../static/fonts/helvetica-now-display/HelveticaNowDisplay-Medium.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Suisse Intl';

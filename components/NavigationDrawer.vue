@@ -24,11 +24,11 @@
         <ui-icon class="nav_drawer__item__icon" variant="home" />
         <h3>Home</h3>
       </NuxtLink>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+      <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="grid" />
         <h3>Explore</h3>
       </NuxtLink>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+      <NuxtLink tag="a" to="/store" class="nav_drawer__item">
         <ui-icon class="nav_drawer__item__icon" variant="shopping-bag" />
         <h3>Store</h3>
       </NuxtLink>
@@ -65,7 +65,7 @@ export default {};
   width: 14rem;
   min-width: 14rem;
   @apply py-4;
-  @apply border-r border-brand-400;
+  @apply border-r border-brand-300;
 }
 
 .nav_drawer__brand {
@@ -85,10 +85,13 @@ export default {};
 h3.nav_drawer__item {
   @apply mt-3;
 }
+a.nav_drawer__item {
+  @apply transition-all;
+}
 a.nav_drawer__item:hover {
   @apply text-brand-800;
   @apply rounded-lg bg-brand-200;
-  @apply transform -translate-y-0.5 transition-transform;
+  @apply transform -translate-y-0.5;
 }
 .nav_drawer__item__icon {
   @apply h-4 w-4;

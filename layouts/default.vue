@@ -31,6 +31,10 @@
 }
 
 .page__container {
+  @apply w-full ;
   @apply pt-28;
+  @apply mx-auto;
+  @apply bg-brand-100;
+  @apply overflow-scroll;
 }
 </style>
