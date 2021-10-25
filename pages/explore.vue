@@ -1,17 +1,21 @@
 <template>
   <div class="page__container">
-    <section class="w-1/2 mx-auto flex flex-wrap">
+    <section class="search__container">
       <utils-input
         class="w-full"
         icon="magnify"
-        placeholder="Search for type, instrument or keyword"
+        placeholder="Search for instrument, type or keyword"
         @update:value="search = $event"
       />
-      <div>
-        <p>{{suggested_instruments}}</p>
-        <p>{{suggested_types}}</p>
-      </div>
+      <transition name="slide-fade-short">
+        <div v-show="exact_match_instrument && search.length" class="w-full mt-4 flex justify-center items-center">
+          <utils-pill class="mr-2">{{exact_match_instrument}}</utils-pill>
+          <utils-pill class="mr-2">{{exact_match_type}}</utils-pill>
+          <h6>press tab to add filter</h6>
+        </div>
+      </transition>
     </section>
+    {{type_list}}
 
     <section class="mt-36 flex flex-col justify-center items-center">
       <h1 class="small">Sound explorer</h1>
@@ -43,17 +47,18 @@ export default {
       r[a.bank_name].push(a);
       return r;
     }, Object.create(null));
-    this.type_reduced = this.presets.reduce((r, a) => {
-      r[a.type] = r[a.type] || [];
-      r[a.type].push(a);
-      return r;
-    }, Object.create(null));
     this.instrument_reduced = this.presets.reduce((r, a) => {
       r[a.instrument] = r[a.instrument] || [];
       r[a.instrument].push(a);
       return r;
     }, Object.create(null));
+    this.type_reduced = this.presets.reduce((r, a) => {
+      r[a.type] = r[a.type] || [];
+      r[a.type].push(a);
+      return r;
+    }, Object.create(null));
 
+    this.preset_bank_list = Object.keys(this.bank_name_reduced);
     this.instrument_list = Object.keys(this.instrument_reduced);
     this.type_list = Object.keys(this.type_reduced);
   },
@@ -63,22 +68,41 @@ export default {
 
     presets: [],
     bank_name_reduced: [],
-    type_reduced: [],
     instrument_reduced: [],
+    type_reduced: [],
 
-    type_list: [],
     instrument_list: [],
+    type_list: [],
 
+    suggested_preset: [],
+    suggested_preset_bank: [],
     suggested_instruments: [],
     suggested_types: [],
+
+    exact_match_instrument: "",
+    exact_match_type: "",
   }),
 
   watch: {
     search: function (search) {
       if (search.length >= 2) {
+        this.suggested_preset = this.presets.filter((el) => {
+          if (typeof el.preset_name === "number") el.preset_name = el.preset_name.toString();
+          return (
+            el.preset_name.toLowerCase().includes(search.toLowerCase()) ||
+            el.subtype.toLowerCase().includes(search.toLowerCase())
+          );
+        });
+        this.suggested_preset_bank = this.preset_bank_list.filter((el) =>
+          el.toLowerCase().includes(search.toLowerCase())
+        );
         this.suggested_instruments = this.instrument_list.filter((el) =>
           el.toLowerCase().includes(search.toLowerCase())
         );
+        this.suggested_types = this.type_list.filter((el) => el.toLowerCase().includes(search.toLowerCase()));
+
+        this.exact_match_instrument = this.instrument_list.find((el) => el.toLowerCase() === search.toLowerCase());
+        this.exact_match_type = this.type_list.find((el) => el.toLowerCase() === search.toLowerCase());
       }
     },
   },
@@ -88,5 +112,10 @@ export default {
 <style lang="postcss" scoped>
 .page__container {
   @apply max-w-6xl;
+}
+.search__container {
+  @apply w-2/3;
+  @apply mx-auto;
+  @apply flex flex-wrap;
 }
 </style>
