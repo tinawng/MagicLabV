@@ -62,29 +62,7 @@ input {
   @apply bg-transparent;
 }
 
-/* 💫 Animations */
-.slide-fade-enter-active, .slide-fade-leave-active {
-  transition-property: transform, opacity;
-  transition-timing-function: ease;
-  transition-duration: .3s;
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(2rem);
-  opacity: 0;
-}
-.slide-fade-short-enter-active, .slide-fade-short-leave-active {
-  transition-property: transform, opacity;
-  transition-timing-function: ease;
-  transition-duration: .100s;
-}
-.slide-fade-short-enter {
-  transform: translateY(-.2rem);
-  opacity: 0;
-}
-.slide-fade-short-leave-to {
-  transform: translateY(.2rem);
-  opacity: 0;
-}
+/* 💫 Transition animations */
 .slide-fade-custom-enter-active, .slide-fade-custom-leave-active {
   transition-property: transform, opacity;
   transition-timing-function: ease;

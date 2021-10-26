@@ -1,6 +1,6 @@
 <template>
   <svg
-    :class="{'ml-0.5': variant==='play'}"
+    :class="{'ml-0.5': variant==='play', 'mt-0.5': variant==='filter'}"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -91,16 +91,23 @@
       <polygon points="5 3 19 12 5 21 5 3"></polygon>
     </g>
     <g v-else-if="variant == 'pause'">
-      <rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>
+      <rect x="6" y="4" width="4" height="16"></rect>
+      <rect x="14" y="4" width="4" height="16"></rect>
     </g>
     <g v-else-if="variant == 'magnify'">
-      <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </g>
     <g v-else-if="variant == 'x'">
-      <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
     </g>
     <g v-else-if="variant == 'compass'">
-      <circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+      <circle cx="12" cy="12" r="10"></circle>
+      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+    </g>
+    <g v-else-if="variant == 'filter'">
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
     </g>
   </svg>
 </template>

@@ -191,4 +191,15 @@ export default {
 .bounce {
   animation: bounce 0.8s ease-in-out calc(0.5s + var(--anim-delay));
 }
+
+/* 💫 Transition animations */
+.slide-fade-enter-active, .slide-fade-leave-active {
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: .3s;
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(2rem);
+  opacity: 0;
+}
 </style>

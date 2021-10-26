@@ -2,7 +2,7 @@
   <div class="button__container">
     <div
       class="button__clickable"
-      :class="{'button__rounded': rounded, 'button__small': small, 'button__disabled': disabled}"
+      :class="{'button__rounded': rounded, 'button__small': small, 'button__disabled': disabled, 'button__enabled': enabled}"
       :style="css_vars"
       @mouseenter="mouse_hover = true"
       @mouseleave="mouse_hover = false"
@@ -11,7 +11,7 @@
       <utils-icon class="button__icon" :variant="icon" :stroke="icon_stroke" />
     </div>
     <div v-if="!!this.$slots.text_hover">
-      <transition name="slide-fade-short" mode="out-in">
+      <transition name="slide-fade" mode="out-in">
         <h5 v-if="!mouse_hover" key="0" class="pt-1.5 text-center font-medium">
           <slot name="text"></slot>
         </h5>
@@ -32,6 +32,7 @@ export default {
     rounded: Boolean,
     small: Boolean,
     disabled: Boolean,
+    enabled: Boolean,
     callback: { type: Function, default: () => {} },
   },
   data: () => ({
@@ -92,5 +93,24 @@ export default {
 .button__disabled {
   @apply opacity-40;
   @apply pointer-events-none;
+}
+.button__enabled {
+  @apply bg-brand-800 text-brand-100;
+}
+
+/* 💫 Transition animations */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: 0.1s;
+}
+.slide-fade-enter {
+  transform: translateY(-0.2rem);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateY(0.2rem);
+  opacity: 0;
 }
 </style>

@@ -22,6 +22,7 @@
 export default {
   props: { headers: Array },
   data: () => ({ selected_tab: "" }),
+  // created() {this.selected_tab = this.headers[0].id}
 };
 </script>
 
@@ -34,7 +35,7 @@ export default {
   @apply flex gap-x-8;
 }
 .tabs__header__item {
-  @apply pb-4;
+  @apply pb-2;
   @apply border-b border-brand-800 border-opacity-0;
   @apply opacity-50;
   @apply transition-all cursor-pointer;
