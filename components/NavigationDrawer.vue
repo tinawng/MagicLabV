@@ -33,15 +33,15 @@
         <h3>Store</h3>
       </NuxtLink>
       <hr class="my-1 ml-6 w-2/3" />
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+      <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
         <utils-icon class="nav_drawer__item__icon" variant="heart" />
         <h3>Favorites</h3>
       </NuxtLink>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+      <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
         <utils-icon class="nav_drawer__item__icon" variant="folder" />
         <h3>My Presets</h3>
       </NuxtLink>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+      <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
         <utils-icon class="nav_drawer__item__icon" variant="history" />
         <h3>History</h3>
       </NuxtLink>

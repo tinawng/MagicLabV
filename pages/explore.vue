@@ -6,7 +6,17 @@
         icon="magnify"
         placeholder="Search for instrument, type or keyword"
         @update:value="search = $event"
-      />
+      >
+        <div
+          v-if="exact_match_instrument || exact_match_type"
+          class="pr-0.5 flex items-center cursor-pointer"
+          @click="addFilter(exact_match_instrument || exact_match_type)"
+        >
+          <utils-icon class="h-2.5 w-2.5 mr-1" variant="plus" :stroke="2.5" />
+          <span class="whitespace-nowrap">{{exact_match_instrument}}</span>
+          <span class="whitespace-nowrap">{{exact_match_type}}</span>
+        </div>
+      </utils-input>
     </section>
 
     <section v-show="false" class="h-24 pt-4">
@@ -98,18 +108,6 @@
       <h1 class="small">Sound explorer</h1>
       <h5 class="mt-3 small">Find your next preset or search for any type, instrument, etc.</h5>
     </section>
-    <section v-else></section>
-
-    <section v-show="false" class="mt-36">
-      <utils-tabs
-        class="w-96"
-        :headers="[{id: 'tab_one', name: 'Presets'}, {id: 'tab_two', name: 'Tab Two'}, {id: 'tab_three', name: 'Tab Three'}]"
-      >
-        <template #tab_one> One </template>
-        <template #tab_two> Two </template>
-        <template #tab_three> Three </template>
-      </utils-tabs>
-    </section>
   </div>
 </template>
 
@@ -188,6 +186,12 @@ export default {
       }
     },
   },
+
+  methods: {
+    addFilter(filter) {
+
+    }
+  }
 };
 </script>
 
@@ -199,7 +203,6 @@ export default {
 .search__section {
   @apply w-2/3;
   @apply mx-auto;
-  @apply flex flex-wrap;
 }
 
 .filter__section {

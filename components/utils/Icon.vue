@@ -109,6 +109,9 @@
     <g v-else-if="variant == 'filter'">
       <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
     </g>
+    <g v-else-if="variant == 'plus'">
+      <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+    </g>
   </svg>
 </template>
 
