@@ -17,6 +17,8 @@ export default {
 .pill__container {
   @apply py-1 px-2;
   @apply bg-brand-200 rounded-lg;
+  @apply transition-colors;
+  transition-duration: 100ms;
 }
 .pill__highlight {
   @apply bg-brand-800 text-brand-100;

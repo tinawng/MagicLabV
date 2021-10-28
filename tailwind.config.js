@@ -20,7 +20,7 @@ module.exports = {
         }
       },
       fontSize: {
-        '2xs': '.6rem',
+        '2xs': '.5rem',
       },
     }
   },

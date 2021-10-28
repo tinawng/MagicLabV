@@ -22,7 +22,7 @@
 export default {
   props: { headers: Array },
   data: () => ({ selected_tab: "" }),
-  // created() {this.selected_tab = this.headers[0].id}
+  created() {this.selected_tab = this.headers[0].id}
 };
 </script>
 

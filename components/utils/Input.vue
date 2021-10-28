@@ -61,9 +61,11 @@ input {
   transition-timing-function: ease;
   transition-duration: 0.2s;
 }
-.slide-fade-enter,
-.slide-fade-leave-to {
+.slide-fade-enter {
   transform: translateX(-0.4rem);
+  opacity: 0;
+}
+.slide-fade-leave-to {
   opacity: 0;
 }
 </style>

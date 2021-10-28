@@ -8,32 +8,18 @@
         @update:value="search = $event"
       >
         <div
-          v-if="exact_match_instrument || exact_match_type"
+          v-if="suggested_filter && !filters.includes(suggested_filter)"
           class="pr-0.5 flex items-center cursor-pointer"
-          @click="addFilter(exact_match_instrument || exact_match_type)"
+          @click="updateFilters(suggested_filter)"
         >
           <utils-icon class="h-2.5 w-2.5 mr-1" variant="plus" :stroke="2.5" />
-          <span class="whitespace-nowrap">{{exact_match_instrument}}</span>
-          <span class="whitespace-nowrap">{{exact_match_type}}</span>
+          <span class="whitespace-nowrap">{{suggested_filter}}</span>
         </div>
       </utils-input>
     </section>
 
-    <section v-show="false" class="h-24 pt-4">
-      <transition name="slide-fade">
-        <div
-          v-show="(exact_match_instrument || exact_match_type) && search.length"
-          class="w-full flex justify-center items-center"
-        >
-          <utils-pill v-show="exact_match_instrument" class="mr-2">{{exact_match_instrument}}</utils-pill>
-          <utils-pill v-show="exact_match_type" class="mr-2">{{exact_match_type}}</utils-pill>
-          <h6>press tab to add filter</h6>
-        </div>
-      </transition>
-    </section>
-
-    <section class="filter__section">
-      <transition name="slide-fade">
+    <section class="filter__section" :style="`height: ${show_filters ? '12':'3'}rem`">
+      <transition name="fade">
         <utils-tabs
           v-if="show_filters"
           :headers="[{id: 'instruments', name: 'Instruments'}, {id: 'types', name: 'Types'}]"
@@ -45,8 +31,8 @@
                 :key="instrument"
                 interactive
                 small
-                :highlight="instrument_filter.includes(instrument)"
-                @click.native="instrument_filter.push(instrument)"
+                :highlight="filters.includes(instrument)"
+                @click.native="updateFilters(instrument)"
               >
                 {{instrument}}
               </utils-pill>
@@ -59,8 +45,8 @@
                 :key="type"
                 interactive
                 small
-                :highlight="type_filter.includes(type)"
-                @click.native="type_filter.push(type)"
+                :highlight="filters.includes(type)"
+                @click.native="updateFilters(type)"
               >
                 {{type}}
               </utils-pill>
@@ -68,19 +54,21 @@
           </template>
         </utils-tabs>
       </transition>
-      <utils-button-icon
-        class="ml-auto"
-        icon="filter"
-        rounded
-        small
-        :enabled="show_filters"
-        @click.native="show_filters = !show_filters"
-      />
+
+      <utils-macaron class="ml-auto" :value="filters.length" :dark="!show_filters">
+        <utils-button-icon
+          icon="filter"
+          rounded
+          small
+          :enabled="show_filters"
+          @click.native="show_filters = !show_filters"
+        />
+      </utils-macaron>
     </section>
 
     <section class="results__section">
       <div class="flex flex-col">
-        <div v-for="preset in suggested_presets.slice(0, 100)" :key="preset.key_id" class="preset_row">
+        <div v-for="preset in suggested_presets.slice(0, results_limit)" :key="preset.key_id" class="preset_row">
           <div class="flex items-center">
             <img class="h-7 w-7 mr-3 rounded" src="/images/lofi.jpg" alt="" />
             <h3>{{preset.preset_name}}</h3>
@@ -150,48 +138,59 @@ export default {
 
     suggested_presets: [],
     suggested_preset_bank: [],
-    suggested_instruments: [],
-    suggested_types: [],
-
-    exact_match_instrument: "",
-    exact_match_type: "",
+    suggested_filter: "",
 
     show_filters: false,
+    filters: [],
     instrument_filter: [],
     type_filter: [],
+
+    results_limit: 50
   }),
 
   watch: {
-    search: function (search) {
-      if (search.length >= 3) {
-        this.suggested_presets = this.presets
-          .filter((el) => {
-            if (typeof el.preset_name === "number") el.preset_name = el.preset_name.toString();
-            return (
-              el.preset_name.toLowerCase().includes(search.toLowerCase()) ||
-              el.subtype.toLowerCase().includes(search.toLowerCase())
-            );
-          })
-          .sort((a, b) => a.f_order - b.f_order);
-        this.suggested_preset_bank = this.preset_bank_list.filter((el) =>
-          el.toLowerCase().includes(search.toLowerCase())
-        );
-        this.suggested_instruments = this.instrument_list.filter((el) =>
-          el.toLowerCase().includes(search.toLowerCase())
-        );
-        this.suggested_types = this.type_list.filter((el) => el.toLowerCase().includes(search.toLowerCase()));
+    search: function () {
+      this.updateSearch();
+    },
 
-        this.exact_match_instrument = this.instrument_list.find((el) => el.toLowerCase() === search.toLowerCase());
-        this.exact_match_type = this.type_list.find((el) => el.toLowerCase() === search.toLowerCase());
-      }
+    filters: function () {
+      this.updateSearch();
     },
   },
 
   methods: {
-    addFilter(filter) {
+    updateSearch() {
+      if (this.search.length >= 3) {
+        console.log("search length > 3");
+        this.suggested_presets = this.presets
+          .filter((el) => {
+            if (typeof el.preset_name === "number") el.preset_name = el.preset_name.toString();
+            return (
+              el.preset_name.toLowerCase().includes(this.search.toLowerCase()) ||
+              el.subtype.toLowerCase().includes(this.search.toLowerCase())
+            );
+          })
+          .sort((a, b) => a.f_order - b.f_order);
 
-    }
-  }
+        this.suggested_preset_bank = this.preset_bank_list.filter((el) =>
+          el.toLowerCase().includes(this.search.toLowerCase())
+        );
+
+        this.suggested_filter =
+          this.instrument_list.find((el) => el.toLowerCase() === this.search.toLowerCase()) ||
+          this.type_list.find((el) => el.toLowerCase() === this.search.toLowerCase());
+      }
+
+      if (this.filters.length)
+        this.suggested_presets = this.presets
+          .filter((el) => this.filters.includes(el.instrument) || this.filters.includes(el.type))
+          .sort((a, b) => a.f_order - b.f_order);
+    },
+    updateFilters(filter) {
+      if (this.filters.includes(filter)) this.filters = this.filters.filter((el) => el !== filter);
+      else this.filters.push(filter);
+    },
+  },
 };
 </script>
 
@@ -207,8 +206,10 @@ export default {
 
 .filter__section {
   @apply w-2/3;
-  @apply mb-12 mx-auto pt-4 pl-2 pr-1;
+  @apply mb-8 mx-auto pt-4 pl-2 pr-1;
   @apply flex gap-4;
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  @apply overflow-hidden;
 }
 
 .results__section {
@@ -222,6 +223,7 @@ export default {
   @apply grid items-center gap-4;
   grid-template-columns: 2fr auto 0.65fr 1fr 1fr;
   @apply transition-colors;
+  transition-duration: 150ms;
   @apply cursor-pointer;
 }
 
@@ -230,15 +232,14 @@ export default {
 }
 
 /* 💫 Transition animations */
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition-property: transform, opacity;
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
   transition-timing-function: ease;
-  transition-duration: 0.2s;
+  transition-duration: 0.3s;
 }
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateY(-0.4rem);
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>
