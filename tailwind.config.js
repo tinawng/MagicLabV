@@ -14,6 +14,7 @@ module.exports = {
           '400': '#CBCBCB', // Button Border
           '300': '#E8E8E9', // Separator
           '200': '#F3F4F4', // Accent Background
+          '150': '#FAFAFB', // White Background hover
           '100': '#fff',    // Background
 
           'accent': '#518ECC',

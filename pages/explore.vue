@@ -123,6 +123,9 @@ export default {
     this.preset_bank_list = Object.keys(this.bank_name_reduced);
     this.instrument_list = Object.keys(this.instrument_reduced);
     this.type_list = Object.keys(this.type_reduced);
+
+    // If page is called with query params, we already got filters
+    if(this.filters.length) this.updateSearch();
   },
 
   data: () => ({
@@ -156,6 +159,11 @@ export default {
     filters: function () {
       this.updateSearch();
     },
+  },
+
+  created() {
+    if (this.$route.query.filters)
+      this.filters = this.$route.query.filters.split(',');
   },
 
   methods: {

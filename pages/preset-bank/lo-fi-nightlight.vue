@@ -61,23 +61,33 @@
           <div v-else-if="details_panel_state == 'presets'" key="presets" ref="preset_list">
             <h3 class="mt-12 mb-4"></h3>
 
-            <div v-for="(preset, index) in preset.presets" :key="preset.name" class="mb-8" :ref="ref => { 'presets' }">
-              <div class="mb-2 ml-1 flex items-center">
-                <h3 class="font-medium">{{preset.name}}</h3>
-                <h5 class="ml-2">
-                  for {{preset.instrument}} <span class="mx-1">·</span> <span class="capitalize">{{preset.type}}</span>
-                </h5>
-                <h3
-                  v-if="preset.playable"
-                  class="ml-auto flex items-center"
-                  :class="{'bounce': preset.playable}"
-                  :style="`--anim-delay: ${index*0.4}s`"
-                >
-                  <utils-icon class="h-4 w-4 mr-1" variant="synth" />Try it
-                </h3>
+            <div
+              v-for="(preset, index) in preset.presets"
+              :key="preset.name"
+              class="preset_list__row flex cursor-pointer"
+              :class="{'bounce': preset.playable}"
+              :style="`--anim-delay: ${index*0.4}s`"
+              :ref="ref => { 'presets' }"
+            >
+              <div class="p-4">
+                <div class="mb-1 flex items-center">
+                  <h3 class="font-medium">{{preset.name}}</h3>
+                  <h5 class="ml-2">
+                    for {{preset.instrument}} <span class="mx-1">·</span>
+                    <span class="capitalize">{{preset.type}}</span>
+                  </h5>
+                </div>
+                <div class="">
+                  <h5 class="leading-relaxed">{{preset.comment}}</h5>
+                </div>
               </div>
-              <div class="p-3 border rounded-lg">
-                <h4 class="leading-relaxed">{{preset.comment}}</h4>
+              <div
+                v-if="preset.playable"
+                class="ml-auto flex flex-col justify-center items-center bg-brand-200 border-l"
+                style="flex: 0 0 10%"
+              >
+                <utils-icon class="h-4 w-4 mb-1.5 opacity-60" variant="synth" />
+                <h5>Try it</h5>
               </div>
             </div>
           </div>
@@ -86,13 +96,13 @@
       <div style="flex: 1 1 35%">
         <h3 class="ml-1 mb-3">Instruments</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <NuxtLink tag="a" v-for="instrument in preset.instruments" :key="instrument" to="/">
+          <NuxtLink tag="a" v-for="instrument in preset.instruments" :key="instrument" :to="`/explore?filters=${instrument}`">
             <h4>{{instrument}}</h4>
           </NuxtLink>
         </div>
         <h3 class="ml-1 mt-12 mb-3">Tags</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <NuxtLink tag="a" v-for="tag in preset.tags" :key="tag" to="/">
+          <NuxtLink tag="a" v-for="tag in preset.tags" :key="tag" :to="`/explore?filters=${tag}`">
             <h4>{{tag}}</h4>
           </NuxtLink>
         </div>
@@ -188,17 +198,28 @@ export default {
   @apply opacity-100 border-opacity-100;
 }
 
+.preset_list__row {
+  @apply mb-8;
+  @apply border rounded-lg;
+  @apply transition-all;
+}
+.preset_list__row:hover {
+  @apply bg-brand-150;
+}
+
 .bounce {
   animation: bounce 0.8s ease-in-out calc(0.5s + var(--anim-delay));
 }
 
 /* 💫 Transition animations */
-.slide-fade-enter-active, .slide-fade-leave-active {
+.slide-fade-enter-active,
+.slide-fade-leave-active {
   transition-property: transform, opacity;
   transition-timing-function: ease;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
-.slide-fade-enter, .slide-fade-leave-to {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateY(2rem);
   opacity: 0;
 }
