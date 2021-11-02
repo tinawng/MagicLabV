@@ -5,11 +5,11 @@
       <h5 class="mt-3 small">collections of presets for your instruments</h5>
     </section>
 
-    <section class="mt-12 flex flex-wrap justify-center gap-6">
-      <div class="w-full"><h2>New this month</h2></div>
-      <cards-preset-bank-large v-for="i in 2" :key="i" @click.native="$router.push('/preset-bank/lo-fi-nightlight')" />
+    <section class="w-11/12 mt-12 mx-auto flex flex-wrap justify-between gap-y-2 gap-x-16">
+      <div class="w-full"><h2 class="text-xl">New this month</h2></div>
+      <cards-preset-bank-large v-for="i in 2" :key="i" class="flex-grow" @click.native="$router.push('/preset-bank/lo-fi-nightlight')" />
     </section>
-    <section class="mt-16 flex flex-wrap justify-center gap-6">
+    <section class="w-11/12 mt-8 mx-auto flex flex-wrap justify-between gap-6">
       <div class="w-full"><h2></h2></div>
       <cards-preset-bank v-for="i in 28" :key="i" @click.native="$router.push('/preset-bank/lo-fi-nightlight')" />
     </section>

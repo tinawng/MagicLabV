@@ -51,7 +51,7 @@ export default {
 .preset_player__container {
   @apply h-20 w-80 z-50;
   @apply mt-4 p-4;
-  @apply bg-brand-100 rounded-lg border border-brand-300;
+  @apply bg-brand-90 rounded-lg;
   @apply flex items-center;
 }
 .preset_player__thumbnail {

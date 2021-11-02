@@ -53,10 +53,11 @@ export default {
 <style lang="postcss" scoped>
 .button__clickable {
   @apply h-12 w-24;
-  @apply rounded-lg border border-brand-400 bg-brand-100 text-brand-900 shadow;
+  @apply rounded-lg border  bg-brand-100 text-brand-800 shadow;
   @apply flex justify-center items-center;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
   @apply cursor-pointer select-none;
+  border-color: hsla(0,0%,100%,0.06);
 }
 .button__clickable:hover {
   border-color: var(--border-hover-color);
@@ -95,7 +96,7 @@ export default {
   @apply pointer-events-none;
 }
 .button__enabled {
-  @apply bg-brand-800 text-brand-100;
+  @apply bg-brand-400 text-brand-100;
 }
 
 /* 💫 Transition animations */

@@ -7,17 +7,18 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          '900': '#000',
-          '800': '#131314', // Text [h1, h2], enabled button
-          '600': '#46474E', // Ligth text [h3]
-          '500': '#6E7074', // Very list text [h4, h5]
-          '400': '#CBCBCB', // Button Border
-          '300': '#E8E8E9', // Separator
-          '200': '#F3F4F4', // Accent Background
-          '150': '#FAFAFB', // White Background hover
-          '100': '#fff',    // Background
+          '900': '#fff',
+          '800': '#8E9297', // Text [h1, h2], enabled button
+          '600': '#8C8F95', // Ligth text [h3]
+          '500': '#8A8E93', // Very list text [h4, h5]
+          '400': '#232428', // Button Border
+          '300': '#393C43', // Separator
+          '200': '#36393F', // Accent Background
+          '150': '#34373C', // White Background hover
+          '100': '#2F3136', // Background
+          '90': '#202225',  // Darker background (nav)
 
-          'accent': '#518ECC',
+          'accent': '#4270CC',
         }
       },
       fontSize: {

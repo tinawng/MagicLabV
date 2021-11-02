@@ -1,49 +1,41 @@
 <template>
   <div class="nav_drawer__container">
     <div class="nav_drawer__brand flex items-center">
-      <span class="nav_drawer__brand__logo">AL</span>
       <h3 class="ml-2 font-semibold">Analog Lab</h3>
     </div>
 
     <div class="nav_drawer__menu">
       <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="headphones" />
-        <h3>Play</h3>
-      </NuxtLink>
-      <h3 class="nav_drawer__item">Stage</h3>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="list" />
-        <h3>Playlists</h3>
-      </NuxtLink>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="cast" />
-        <h3>Live</h3>
-      </NuxtLink>
-      <h3 class="nav_drawer__item">Library</h3>
-      <NuxtLink tag="a" to="/" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="home" />
+        <utils-icon class="nav_drawer__item__icon" variant="home" :stroke="1.5" />
         <h3>Home</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="compass" />
+        <utils-icon class="nav_drawer__item__icon" variant="compass" :stroke="1.5" />
         <h3>Explore</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/store" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="shopping-bag" />
+        <utils-icon class="nav_drawer__item__icon" variant="shopping-bag" :stroke="1.5" />
         <h3>Store</h3>
       </NuxtLink>
-      <hr class="my-1 ml-6 w-2/3" />
+
+      <hr class="w-2/3 mt-2 mb-1 ml-6"/>
+
+      <h3 class="nav_drawer__item">My Library</h3>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="heart" />
+        <utils-icon class="nav_drawer__item__icon" variant="heart" :stroke="1.5" />
         <h3>Favorites</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="folder" />
+        <utils-icon class="nav_drawer__item__icon" variant="folder" :stroke="1.5" />
         <h3>My Presets</h3>
       </NuxtLink>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
-        <utils-icon class="nav_drawer__item__icon" variant="history" />
+        <utils-icon class="nav_drawer__item__icon" variant="history" :stroke="1.5" />
         <h3>History</h3>
+      </NuxtLink>
+      <NuxtLink tag="a" to="/" class="nav_drawer__item">
+        <utils-icon class="nav_drawer__item__icon" variant="grid" :stroke="1.5" />
+        <h3>My Banks</h3>
       </NuxtLink>
     </div>
 
@@ -65,7 +57,7 @@ export default {};
   width: 14rem;
   min-width: 14rem;
   @apply py-4;
-  @apply border-r border-brand-300;
+  @apply bg-brand-90 border-r border-brand-300;
 }
 
 .nav_drawer__brand {
