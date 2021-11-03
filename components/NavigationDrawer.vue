@@ -1,7 +1,7 @@
 <template>
   <div class="nav_drawer__container">
-    <div class="nav_drawer__brand flex items-center">
-      <h3 class="ml-2 font-semibold">Analog Lab</h3>
+    <div class="nav_drawer__brand">
+      <img class="w-full" src="/images/analoglabv.png" alt="alv-logo" />
     </div>
 
     <div class="nav_drawer__menu">
@@ -18,7 +18,7 @@
         <h3>Store</h3>
       </NuxtLink>
 
-      <hr class="w-2/3 mt-2 mb-1 ml-6"/>
+      <hr class="w-2/3 mt-2 mb-1 ml-6" />
 
       <h3 class="nav_drawer__item">My Library</h3>
       <NuxtLink tag="a" to="/explore" class="nav_drawer__item">
@@ -61,12 +61,7 @@ export default {};
 }
 
 .nav_drawer__brand {
-  @apply mt-4 mb-8 mx-4 pl-3.5;
-}
-.nav_drawer__brand__logo {
-  @apply py-2 px-2;
-  @apply bg-brand-800 rounded-xl tracking-widest;
-  @apply text-sm font-medium text-brand-200;
+  @apply my-3 ml-7 mr-10;
 }
 .nav_drawer__item {
   @apply mx-4 py-2.5 pl-3.5 pr-4;
@@ -76,14 +71,6 @@ export default {};
 }
 h3.nav_drawer__item {
   @apply mt-3;
-}
-a.nav_drawer__item {
-  @apply transition-all;
-}
-a.nav_drawer__item:hover {
-  @apply text-brand-800;
-  @apply rounded-lg bg-brand-200;
-  @apply transform -translate-y-0.5;
 }
 .nav_drawer__item__icon {
   @apply h-4 w-4;

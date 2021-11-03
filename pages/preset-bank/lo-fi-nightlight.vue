@@ -83,10 +83,10 @@
               </div>
               <div
                 v-if="preset.playable"
-                class="ml-auto flex flex-col justify-center items-center bg-brand-200 border-l"
+                class="ml-auto flex flex-col justify-center items-center bg-brand-200"
                 style="flex: 0 0 10%"
               >
-                <utils-icon class="h-4 w-4 mb-1.5 opacity-60" variant="synth" />
+                <utils-icon class="h-4 w-4 mb-1.5 opacity-80" variant="synth" />
                 <h5>Try it</h5>
               </div>
             </div>
@@ -201,10 +201,11 @@ export default {
 .preset_list__row {
   @apply mb-8;
   @apply border rounded-lg;
+  border-color: hsla(0,0%,100%,0.1);
   @apply transition-all;
 }
 .preset_list__row:hover {
-  @apply bg-brand-150;
+  background-color: hsla(0,0%,100%,0.03);
 }
 
 .bounce {

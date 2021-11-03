@@ -46,12 +46,14 @@ h6 {
 }
 
 a {
-  @apply transition-transform;
+  transition-property: transform background-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
 a:hover {
+  @apply rounded-lg;
+  background-color: hsla(0,0%,100%,0.05);
   @apply text-brand-800;
-  @apply rounded-lg bg-brand-200;
   @apply transform -translate-y-0.5;
 }
 a:active {

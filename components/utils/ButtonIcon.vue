@@ -28,7 +28,7 @@ export default {
   props: {
     icon: String,
     icon_stroke: { type: Number, default: 1.8 },
-    color: { type: String, default: "#6E7074" },
+    color: { type: String, default: undefined },
     rounded: Boolean,
     small: Boolean,
     disabled: Boolean,
@@ -41,9 +41,9 @@ export default {
   computed: {
     css_vars: function () {
       return (
-        `--border-hover-color: ${this.color};` +
-        `--color-hover-color: ${this.color !== "#6E7074" ? this.color : ""};` +
-        `--background-hover-color: ${this.color === "#6E7074" ? "#F3F4F4" : "#FFF"};`
+        `--border-hover-color: ${this.color ? this.color : "hsla(0,0%,100%,0.1)"};` +
+        `--color-hover-color: ${this.color ? this.color : "hsla(0,0%,100%,0.3)"};` +
+        `--background-hover-color: ${this.color ? "hsla(0,0%,100%,0.07)" : "hsla(0,0%,100%,0.1)"};`
       );
     },
   },
@@ -53,11 +53,13 @@ export default {
 <style lang="postcss" scoped>
 .button__clickable {
   @apply h-12 w-24;
-  @apply rounded-lg border  bg-brand-100 text-brand-800 shadow;
+  @apply rounded-lg border text-brand-800 shadow;
+
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border-color: hsla(0, 0%, 100%, 0.06);
   @apply flex justify-center items-center;
   transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
   @apply cursor-pointer select-none;
-  border-color: hsla(0,0%,100%,0.06);
 }
 .button__clickable:hover {
   border-color: var(--border-hover-color);
@@ -96,7 +98,7 @@ export default {
   @apply pointer-events-none;
 }
 .button__enabled {
-  @apply bg-brand-400 text-brand-100;
+  @apply bg-brand-800 text-brand-100;
 }
 
 /* 💫 Transition animations */
