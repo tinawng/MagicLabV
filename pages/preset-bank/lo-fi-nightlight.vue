@@ -96,7 +96,12 @@
       <div style="flex: 1 1 35%">
         <h3 class="ml-1 mb-3">Instruments</h3>
         <div class="p-6 rounded-lg bg-brand-200 flex flex-wrap gap-x-6 gap-y-2">
-          <NuxtLink tag="a" v-for="instrument in preset.instruments" :key="instrument" :to="`/explore?filters=${instrument}`">
+          <NuxtLink
+            tag="a"
+            v-for="instrument in preset.instruments"
+            :key="instrument"
+            :to="`/explore?filters=${instrument}`"
+          >
             <h4>{{instrument}}</h4>
           </NuxtLink>
         </div>
@@ -114,6 +119,7 @@
 <script>
 export default {
   async fetch() {
+    let api_port = this.$store.getters["settings/api_port"];
     this.preset = await this.$http.$get("json/preset.json");
   },
 
@@ -201,11 +207,11 @@ export default {
 .preset_list__row {
   @apply mb-8;
   @apply border rounded-lg;
-  border-color: hsla(0,0%,100%,0.1);
+  border-color: hsla(0, 0%, 100%, 0.1);
   @apply transition-all;
 }
 .preset_list__row:hover {
-  background-color: hsla(0,0%,100%,0.03);
+  background-color: hsla(0, 0%, 100%, 0.03);
 }
 
 .bounce {

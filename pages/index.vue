@@ -6,7 +6,9 @@
 
 <script>
 export default {
-
+  created() {
+    this.$store.commit('settings/setApiPort',this.$route.query.api_port);
+  }
 }
 </script>
 

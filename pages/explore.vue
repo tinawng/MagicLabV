@@ -102,6 +102,7 @@
 <script>
 export default {
   async fetch() {
+    let api_port = this.$store.getters["settings/api_port"];
     this.presets = await this.$http.$get("json/presets.json");
 
     this.bank_name_reduced = this.presets.reduce((r, a) => {
